@@ -5,13 +5,16 @@
 #include <string>
 #include <algorithm>
 
+
+using namespace std;
+
 template<typename C>
 void print(const C& c){ //Nagy C paraméter, kis c változónév
 
     for(auto const& x : c) {
-      std::cout << x << " ";
+      cout << x << " ";
    }
-   std::cout << '\n';
+   cout << '\n';
 
 
 }
@@ -41,20 +44,20 @@ int main(){
     int arr[size];
     for (int i = 0; i < size; ++i) arr[i] = i;
 
-    std::array<int, size> ai; //Egy objektum lesz, aminek az osztálya std::array. std::array rengeteg plusz művelettel és funkcióval van kiegészítve
-    std::copy(arr, arr+size, ai.begin());
+    array<int, size> ai; //Egy objektum lesz, aminek az osztálya std::array. std::array rengeteg plusz művelettel és funkcióval van kiegészítve
+    copy(arr, arr+size, ai.begin());
 
-    std::vector<int> vi(size);
-    std::copy(arr, arr+size, vi.begin());
+    vector<int> vi(size);
+    copy(arr, arr+size, vi.begin());
 
-    std::list<int> li(size); //
-    std::copy(arr, arr+size, li.begin()); 
+    list<int> li(size); 
+    copy(arr, arr+size, li.begin()); 
 
     //4. feladat
 
-    std::array<int, size> ai2 =  ai;
-    std::vector<int> vi2 = vi;
-    std::list<int> li2 =li;
+    array<int, size> ai2 =  ai;
+    vector<int> vi2 = vi;
+    list<int> li2 =li;
 
     //print feladat
     print(arr);
@@ -84,21 +87,20 @@ int main(){
     //amely egyenlő a val (3. paraméter) értékkel. Ha nem található ilyen elem,
     //a függvény last-tal (2. paraméter) tér vissza.
 
-    std::vector<int>::iterator vit;
-    vit = std::find(vi2.begin(), vi2.end(), 3);
-    if( vit!= vi2.end()){
-        std::cout << "Found at: " << std::distance(vi2.begin(), vit) << std::endl;
+    auto res_v = find(vi2.begin(), vi2.end(), 3);
+    if(res_v != vi2.end()){
+        cout << "Found at: " << distance(vi2.begin(), res_v) << endl;
         //distance: első és második paraméter közötti elemek számát adja meg
     } else{
-        std::cout << "Not found 3" << std::endl;
+        cout << "Not found 3" << endl;
     }
 
     //27 keresése listben
     auto res_l = find(li2.begin(), li2.end(), 27);
     if (res_l != li2.end())
-        std::cout << "Found at: " << std::distance(li2.begin(), res_l) << std::endl;
+        cout << "Found at: " << distance(li2.begin(), res_l) << endl;
     else
-       std::cout << "Not found 27"<< std::endl;
+       cout << "Not found 27"<< endl;
         
 
     return 0;

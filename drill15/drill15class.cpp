@@ -14,7 +14,7 @@ void checkName(string name){
 
 }
 void checkAge(int age){
-    if (age < 0 && age >=150)
+    if (age < 0 || age >=150)
         error("Age is not in range [0,150]");
 }
 
@@ -43,7 +43,7 @@ class Person{
         }
 
         void setAge(int a){
-            if (a > 0 && a <=150)
+            if (a > 0 || a <=150)
                 age = a;
             else error("Age is not in range [0,150]");
         }
