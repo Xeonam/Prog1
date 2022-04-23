@@ -82,6 +82,17 @@ std::vector<Item> iid_erase(std::vector<Item> &v, int i){
 
 }
 
+//Functor erase:
+class Find_by_name{
+    string name;
+public:
+    Find_by_name(const string& s) :name(s) { }
+    bool operator()(const Item& it) const
+    {
+        return it.name == name;
+    }
+};
+
 //Listához kapcsolódó..
 void print_list(list<Item> l){
     for(const auto& i: l){
