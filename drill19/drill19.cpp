@@ -27,24 +27,25 @@ T& S<T>::get(){
 	return val;
 }
 
+//11. feladat
 template<typename T>
 const T& S<T>::get() const{ //get()... //simán ebben a kontextusban a val még nem létezik ezért kell a S<T>
     return val; 
 }
 
-//12. feladat
+//10. feladat
 template<typename T>
 void S<T>::operator=(const T& s){
     val = s;
 }
 
-//input beolvasás feladat
+//12. feladat
 template<typename T>
 void read_val(T& v) {
 	cin >> v; //Fordítási időben derül ki a típus
 }
 
-//Utolsó feladat
+//14. feladat
 template<typename T>
 std::ostream& operator<<(ostream& os, vector<T>& v) {
 	os << "{ "; //könyv kérése
@@ -53,7 +54,7 @@ std::ostream& operator<<(ostream& os, vector<T>& v) {
         //kiírom a vector aktuális elemét, attól függően, hogy hanyadik elem.
 	}
 	os << "}\n";
-	return os; //könyv kérése
+	return os;
 } // cout << vec1 << vec2 << vec3 formátumban
 
 template<typename T>
@@ -65,7 +66,7 @@ istream& operator>>(istream& is, vector<T>& v) {
     //input streamről mindig bekérek egy ilyen típusú elemet
     //berakom őket egy vectorba, amíg vesszővel olvasom be tudom, hogy addig tart a vector
 	//cout << "meghívjuk" << endl; //<- Segítségnek, hogy hol hívódik meg
-	char ch = 0; //
+	char ch = 0;
 	is >> ch;
 	if (ch != '{') {
 		is.unget(); //visszaadjuk az unget()-tel
@@ -73,7 +74,7 @@ istream& operator>>(istream& is, vector<T>& v) {
 	}
 	//Ha kapcsos zárójel jön. Csinálunk egy T típusú változót. (T val).
 	//Input paraméternek ott van a vector<T> típusú vector.
-	//(Ha vectorba intek vannak akkor int lesz...
+	//(Ha vectorba intek vannak akkor int lesz...)
 	for (T val; is >> val;) {
 		v.push_back(val);
 		is >> ch; //megnézzük mi a következő karakter
@@ -110,7 +111,7 @@ int main(){
     sd = 42.1;
     cout << "S<double> : " << sd.get() << endl;
 
-    //12. feladat
+    //13. feladat
     int ii;
     read_val(ii);
     S<int> si2 {ii};
@@ -128,13 +129,13 @@ int main(){
     cout << "S<double> : " << sd2.get() << endl;
     cout << "S<string> : " << ss2.get() << endl;
 
+    //14. feladat
+    cout << "S<vector<int>>: (format: {val1, val2, val3})" << endl;
+    vector<int> vec;
+    read_val(vec);
+    S<vector<int>> svi2 {vec};
+    cout << "S<vector<int>> : " << svi2.get();
 
-   cout << "S<vector<int>>: (format: {val1, val2, val3})" << endl;
-   vector<int> vec;
-   read_val(vec);
-   S<vector<int>> svi2 {vec};
-   cout << "S<vector<int>> : " << svi2.get();
-
-   return 0;
+    return 0;
 }
 //kérdés: hol futnak a input output operatotok.
